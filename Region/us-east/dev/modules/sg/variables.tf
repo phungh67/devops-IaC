@@ -25,5 +25,5 @@ variable "terraform_status" {
 # Variables for SG
 variable "vpc_id" {
   description = "The ID of main VPC from VPC module"
-  type = string
+  type        = string
 }
