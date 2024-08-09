@@ -1,0 +1,5 @@
+*.tfstate
+*.lock.hcl
+*.terraform
+ Region/us-east/dev/.terraform
+ *.out

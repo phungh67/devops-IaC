@@ -100,12 +100,13 @@ resource "aws_vpc_security_group_ingress_rule" "common_allow_bastion" {
 }
 
 resource "aws_vpc_security_group_ingress_rule" "elb_allow_public" {
+  count = length(local.traffic_port)
   security_group_id = aws_security_group.basic_elb.id
   cidr_ipv4         = "0.0.0.0/0"
-  from_port         = local.ssh_port
+  from_port         = element(local.traffic_port, count.index)
   ip_protocol       = local.ip_protocol
-  to_port           = local.ssh_port
-  description       = "Allow public access from ELB"
+  to_port           = element(local.traffic_port, count.index)
+  description       = "Allow public access on port ${element(local.traffic_port, count.index)} from ELB"
 }
 
 resource "aws_vpc_security_group_egress_rule" "elb_route_to_was" {

@@ -57,7 +57,7 @@ resource "aws_internet_gateway" "public-gateway" {
   }
 }
 
-resource "aws_route_table" "public_routetable" {
+resource "aws_route_table" "public_route_table" {
   vpc_id = aws_vpc.main_vpc.id
   route {
     cidr_block = "0.0.0.0/0"
@@ -107,13 +107,13 @@ resource "aws_route_table" "private_route_table" {
 
 resource "aws_route_table_association" "pub_association" {
   count          = length(var.public_cidr)
-  subnet_id      = aws_subnet.public_subnets[*].id
-  route_table_id = aws_subnet.public_subnets.id
+  subnet_id      = element(aws_subnet.public_subnets[*].id, count.index)
+  route_table_id = aws_route_table.public_route_table.id
 }
 
 resource "aws_route_table_association" "pri_association" {
   count          = length(var.private_cidr)
-  subnet_id      = aws_subnet.private_subnets[*].id
+  subnet_id      = element(aws_subnet.private_subnets[*].id, count.index)
   route_table_id = aws_route_table.private_route_table.id
 }
 

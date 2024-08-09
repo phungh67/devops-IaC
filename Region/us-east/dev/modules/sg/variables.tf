@@ -11,11 +11,6 @@ variable "resource_prefix" {
   default     = "due1"
 }
 
-variable "az_list" {
-  type        = list(string)
-  description = "List of availability zones associate with region"
-}
-
 variable "terraform_status" {
   type        = string
   description = "Indicate that infrastructure is managed by Terraform or not"
