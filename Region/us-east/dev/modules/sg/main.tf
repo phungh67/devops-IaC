@@ -100,7 +100,7 @@ resource "aws_vpc_security_group_ingress_rule" "common_allow_bastion" {
 }
 
 resource "aws_vpc_security_group_ingress_rule" "elb_allow_public" {
-  count = length(local.traffic_port)
+  count             = length(local.traffic_port)
   security_group_id = aws_security_group.basic_elb.id
   cidr_ipv4         = "0.0.0.0/0"
   from_port         = element(local.traffic_port, count.index)

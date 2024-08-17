@@ -17,8 +17,10 @@ variable "terraform_status" {
   default     = "True"
 }
 
-# Variables for SG
-variable "vpc_id" {
-  description = "The ID of main VPC from VPC module"
-  type        = string
+variable "key_algorithm" {
+  type = string
+}
+
+variable "key_bit" {
+  type = string
 }

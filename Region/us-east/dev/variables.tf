@@ -49,3 +49,32 @@ variable "database_cidr" {
   default     = ["10.0.12.0/24", "10.0.22.0/24", "10.0.32.0/24"]
 }
 
+# TLS SSH key
+variable "key_algorithm" {
+  type        = string
+  description = "The algorithm to create key"
+  default     = "RSA"
+}
+
+variable "key_bit" {
+  type        = string
+  description = "Number of bit used for key creating process"
+  default     = "4096"
+}
+
+# EC2 instances related key
+variable "instance_base_ami" {
+  type        = string
+  description = "The base customized AMI with all necessary packages"
+}
+
+variable "instance_type" {
+  type        = string
+  description = "The default type of all instances"
+  default     = "t2.micro"
+}
+
+variable "default_key" {
+  type        = string
+  description = "The default SSH key using for SSH process"
+}
