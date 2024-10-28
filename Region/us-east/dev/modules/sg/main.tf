@@ -136,3 +136,12 @@ resource "aws_vpc_security_group_egress_rule" "was_to_database" {
   ip_protocol                  = local.ip_protocol
   to_port                      = local.database_port
 }
+
+resource "aws_vpc_security_group_egress_rule" "allow_internet" {
+  count             = length(local.traffic_port)
+  security_group_id = aws_security_group.basic_allow_internet.id
+  cidr_ipv4         = "0.0.0.0/0"
+  ip_protocol       = local.ip_protocol
+  from_port         = element(local.traffic_port, count.index)
+  to_port           = element(local.traffic_port, count.index)
+}

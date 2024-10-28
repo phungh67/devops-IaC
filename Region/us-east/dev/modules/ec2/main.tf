@@ -1,7 +1,7 @@
 resource "aws_instance" "bastion_host" {
   instance_type   = var.instance_type
   key_name        = var.key_name
-  security_groups = concat(["${var.bastion_sg}"], ["${var.common_sg}"])
+  security_groups = concat(["${var.bastion_sg}"], ["${var.common_sg}"], ["${var.internet_sg}"])
   subnet_id       = var.public_subnets[0]
   ami             = var.default_ami
 
