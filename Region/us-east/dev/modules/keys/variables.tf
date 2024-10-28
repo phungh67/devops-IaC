@@ -1,10 +1,4 @@
 # Global variables, present in almost all modules
-variable "region" {
-  description = "Main region of AWS resources"
-  type        = string
-  default     = "us-west-1"
-}
-
 variable "resource_prefix" {
   type        = string
   description = "Name prefix for resources for better management"

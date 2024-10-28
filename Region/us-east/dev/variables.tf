@@ -66,6 +66,7 @@ variable "key_bit" {
 variable "instance_base_ami" {
   type        = string
   description = "The base customized AMI with all necessary packages"
+  default     = "ami-06b21ccaeff8cd686"
 }
 
 variable "instance_type" {
@@ -77,4 +78,5 @@ variable "instance_type" {
 variable "default_key" {
   type        = string
   description = "The default SSH key using for SSH process"
+  default     = null
 }

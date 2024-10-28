@@ -6,6 +6,10 @@ output "nat_gateway_ip" {
   value = aws_eip.nat_eip.public_ip
 }
 
+output "bastion_ip" {
+  value = aws_eip.bastion_eip.id
+}
+
 output "aws_public_subnet_id" {
   value = aws_subnet.public_subnets[*].id
 }

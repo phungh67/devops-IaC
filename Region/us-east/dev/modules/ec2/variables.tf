@@ -1,10 +1,4 @@
 # Global variables, present in almost all modules
-variable "region" {
-  description = "Main region of AWS resources"
-  type        = string
-  default     = "us-west-1"
-}
-
 variable "resource_prefix" {
   type        = string
   description = "Name prefix for resources for better management"
@@ -15,6 +9,26 @@ variable "terraform_status" {
   type        = string
   description = "Indicate that infrastructure is managed by Terraform or not"
   default     = "True"
+}
+
+variable "default_ami" {
+  type        = string
+  description = "The default AMI ID when there is no specified"
+}
+
+variable "key_name" {
+  type        = string
+  description = "The name of SSH key for this machine"
+}
+
+variable "instance_type" {
+  type        = string
+  description = "The type of computing unit"
+}
+
+variable "bastion_eip" {
+  type        = string
+  description = "Elastic IP to associate to bastion host"
 }
 
 variable "main_vpc_id" {
@@ -32,16 +46,6 @@ variable "common_sg" {
   description = "SG that associated with almost all instances, resources in this VPC"
 }
 
-variable "elb_sg" {
-  type        = string
-  description = "SG that associated with ELB"
-}
-
-variable "database_sg" {
-  type        = string
-  description = "SG that associated with database servers"
-}
-
 variable "internet_sg" {
   type        = string
   description = "SG that allows associcated resources go to the Internet"
@@ -50,15 +54,5 @@ variable "internet_sg" {
 variable "public_subnets" {
   type        = list(string)
   description = "List of public subnets"
-}
-
-variable "private_subnets" {
-  type        = list(string)
-  description = "List of private subnets"
-}
-
-variable "database_subnets" {
-  type        = list(string)
-  description = "List of subnets for database serversF"
 }
 

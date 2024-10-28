@@ -80,6 +80,15 @@ resource "aws_eip" "nat_eip" {
   }
 }
 
+resource "aws_eip" "bastion_eip" {
+  domain = "vpc"
+  tags = {
+    "Name"        = "${var.resource_prefix}-bastion-eip"
+    "Terraform"   = "${var.terraform_status}"
+    "Environment" = local.Environment
+  }
+}
+
 resource "aws_nat_gateway" "main_nat" {
   allocation_id = aws_eip.nat_eip.id
   subnet_id     = aws_subnet.public_subnets[0].id
